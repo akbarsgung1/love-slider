@@ -1,0 +1,227 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surprise Slider - I LOVE YOU</title>
+  <style>
+    :root{
+      --bg:#fff0f6;
+      --card:#fff;
+      --accent:#ff3366;
+      --accent-2:#ff7aa2;
+      --text:#3a2330;
+      --shadow: 0 8px 30px rgba(50,10,30,0.12);
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);display:flex;align-items:center;justify-content:center;padding:28px}.stage{
+  width:360px; max-width:94vw; background:var(--card); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; position:relative;
+}
+
+/* floating hearts background */
+.hearts{
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+}
+.heart{position:absolute; width:18px; height:18px; transform:translate(-50%,-50%); opacity:0.9}
+.heart:before, .heart:after{content:''; position:absolute; width:18px; height:18px; background:radial-gradient(circle at 30% 30%, #fff, transparent 35%), var(--accent); border-radius:50%;}
+.heart:after{transform:translate(10px,-10px) rotate(-45deg)}
+
+.slider{
+  position:relative;
+  height:520px; display:flex; align-items:center; justify-content:center;
+}
+
+.slides{width:100%; height:100%; position:relative}
+.slide{position:absolute; inset:0; padding:36px 28px; opacity:0; transform:translateY(20px) scale(0.99); transition:all 600ms cubic-bezier(.2,.9,.2,1); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center}
+.slide.active{opacity:1; transform:translateY(0) scale(1)}
+
+.bubble{
+  background:linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85)); border-radius:20px; padding:18px 22px; box-shadow:0 6px 18px rgba(120,30,60,0.08); max-width:320px;
+}
+h1{margin:8px 0 6px; color:var(--accent); font-size:20px; letter-spacing:1px}
+p{margin:6px 0; color:var(--text); font-size:15px; line-height:1.4}
+
+.big-love{font-size:42px; color:var(--accent); margin-top:10px; transform:translateY(-6px)}
+
+/* controls */
+.dots{display:flex; gap:8px; justify-content:center; padding:12px 0}
+.dot{width:10px;height:10px;border-radius:20px;background:#f3d7df;cursor:pointer}
+.dot.active{background:var(--accent)}
+
+.controls{display:flex; gap:10px; justify-content:center; padding-bottom:16px}
+.btn{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; border:none; padding:8px 12px; border-radius:12px; cursor:pointer; box-shadow:0 6px 18px rgba(255,90,140,0.14)}
+.btn.ghost{background:transparent;color:var(--accent); border:1px solid rgba(255,60,100,0.12)}
+
+/* slide 6 form */
+.form-row{margin-top:12px; display:flex; flex-direction:column; gap:8px; align-items:stretch}
+input[type="text"], textarea{padding:10px 12px; border-radius:10px; border:1px solid #ffd9e6; background:linear-gradient(180deg,#fff,#fffafc); font-size:14px}
+.choice-row{display:flex; gap:8px}
+
+footer.credit{font-size:12px; text-align:center; color:#b34a66; padding:10px 12px}
+
+/* small heart beat on text */
+.pulse{display:inline-block; animation:beat 900ms infinite alternate}
+@keyframes beat{from{transform:scale(1)} to{transform:scale(1.12)}}
+
+/* responsive */
+@media (max-width:420px){ .stage{border-radius:14px} }
+
+  </style>
+</head>
+<body>
+  <div class="stage" role="region" aria-label="Slider pesan cinta">
+    <div class="hearts" id="hearts"></div><div class="slider">
+  <div class="slides" id="slides">
+    <div class="slide active" data-index="0">
+      <div class="bubble">
+        <h1>I LOVE YOUU SAYANGG</h1>
+        <p class="big-love">❤️❤️❤️</p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="1">
+      <div class="bubble">
+        <h1>AKUU AKAN TERUSS MENUNGGU MUU</h1>
+        <p>dengann sabarr heheheh</p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="2">
+      <div class="bubble">
+        <h1>AKUU AKAANN TERUSS SAMA KAMUU</h1>
+        <p>hehehehe <span class="pulse">😘</span></p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="3">
+      <div class="bubble">
+        <h1>KAMUU ADALAH ORANG YANGG AKUU SAYANGIII</h1>
+        <p>bangeeettt heheheh</p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="4">
+      <div class="bubble">
+        <h1>AKUU BERHARAP KITA TERUSS BERSAMAA</h1>
+        <p>sampai titikk dii manaa kita bisa hidupp bersamaaa heheheh</p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="5">
+      <div class="bubble">
+        <h1>HARAPANN AKUU KEE KAMUU MUTTTIARAAA</h1>
+        <p>akuu berharappp kitaa bisaa jadii papaa mamaa heheheh, harusss bisaaa dongg</p>
+      </div>
+    </div>
+
+    <div class="slide" data-index="6">
+      <div class="bubble">
+        <h1>AMINNINN IHH MUTT, MUTTTT...</h1>
+        <p>amininnn, amininn yaaa hehehehe</p>
+
+        <hr style="margin:12px 0; border:none; height:1px; background:linear-gradient(90deg,#fff0,#ffd7e6);">
+
+        <div style="text-align:left; font-size:13px; color:#7a2a3a">Tuliss amiinn muutt dii sini atau mau sampein pesan jugaa bisaa heheheh</div>
+        <div class="form-row">
+          <textarea id="userMsg" rows="3" placeholder="Tulis pesanmu di sini... contoh: Semoga kalian selalu bahagia ❤️"></textarea>
+
+          <div class="choice-row">
+            <button class="btn" id="sendEmail">Isi & Kirim (Email)</button>
+            <button class="btn ghost" id="skip">Lewati</button>
+          </div>
+
+          <div style="font-size:12px;color:#a84b63">catatann..</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="controls">
+  <button class="btn ghost" id="prev">Sebelumnya</button>
+  <button class="btn" id="pause">Jeda</button>
+  <button class="btn" id="next">Selanjutnya</button>
+</div>
+
+<footer class="credit">✨ dibuat dengan cinta dan animasi love 💌</footer>
+
+  </div>  <script>
+    // Simple slider logic
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('dots');
+    let index = 0;
+    let timer = null;
+    const autoplayDelay = 4500;
+
+    function buildDots(){
+      slides.forEach((s,i)=>{
+        const d = document.createElement('div'); d.className='dot'+(i===0? ' active':''); d.dataset.i=i;
+        d.addEventListener('click', ()=>goTo(i)); dotsWrap.appendChild(d);
+      })
+    }
+    function update(){
+      slides.forEach(s=>s.classList.remove('active'));
+      slides[index].classList.add('active');
+      document.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
+      document.querySelectorAll('.dot')[index].classList.add('active');
+    }
+    function next(){ index = (index+1)%slides.length; update(); }
+    function prev(){ index = (index-1+slides.length)%slides.length; update(); }
+    function goTo(i){ index=i; update(); resetTimer(); }
+
+    function startTimer(){ timer = setInterval(next, autoplayDelay); }
+    function resetTimer(){ clearInterval(timer); startTimer(); }
+    function stopTimer(){ clearInterval(timer); timer=null; }
+
+    document.getElementById('next').addEventListener('click', ()=>{ next(); resetTimer(); });
+    document.getElementById('prev').addEventListener('click', ()=>{ prev(); resetTimer(); });
+    document.getElementById('pause').addEventListener('click', (e)=>{
+      if(timer){ stopTimer(); e.target.textContent='Putar'; } else { startTimer(); e.target.textContent='Jeda'; }
+    });
+
+    buildDots(); startTimer();
+
+    // Hearts background generator
+    const hearts = document.getElementById('hearts');
+    function makeHeart(){
+      const h = document.createElement('div'); h.className='heart';
+      const size = 12 + Math.random()*26; h.style.width=h.style.height=size+'px';
+      h.style.left = Math.random()*100+'%';
+      h.style.top = (70 + Math.random()*40) + '%';
+      const dur = 6 + Math.random()*8;
+      h.style.opacity = 0.9 - Math.random()*0.6;
+      hearts.appendChild(h);
+      h.animate([
+        { transform: `translateY(0) scale(1)`, opacity: h.style.opacity },
+        { transform: `translateY(-220px) scale(1.1)`, opacity: 0 }
+      ],{ duration: dur*1000, easing:'linear' });
+      setTimeout(()=> h.remove(), dur*1000);
+    }
+    setInterval(makeHeart, 650);
+
+    // Email send logic for slide 6
+    document.getElementById('sendEmail').addEventListener('click', ()=>{
+      const msg = document.getElementById('userMsg').value || 'Semoga bahagia selalu ❤️';
+      const prefix = 'sampaikan pesan kamuu dii siniii heheheh\n\n';
+      const body = encodeURIComponent(prefix + msg + '\n\n-- dari slider cinta');
+      const subject = encodeURIComponent('Pesan Cinta untuk Mu');
+      const mailto = `mailto:akbarfauzan0765@gmail.com?subject=${subject}&body=${body}`;
+      // open mail composer
+      window.location.href = mailto;
+    });
+
+    document.getElementById('skip').addEventListener('click', ()=>{
+      alert('Oke, dilewati. Lanjut ke slide berikutnya.'); next(); resetTimer();
+    });
+
+    // Accessibility: keyboard
+    document.addEventListener('keydown',(e)=>{
+      if(e.key==='ArrowRight') { next(); resetTimer(); }
+      if(e.key==='ArrowLeft') { prev(); resetTimer(); }
+      if(e.key===' ') { e.preventDefault(); document.getElementById('pause').click(); }
+    });
+  </script></body>
+</html>
